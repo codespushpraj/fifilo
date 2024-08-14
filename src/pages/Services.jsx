@@ -3,25 +3,8 @@ import { Helmet } from "react-helmet";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { NavLink } from "react-router-dom";
-// import $ from "jquery";
-// import { TweenMax, TimelineMax, Linear, SlowMo } from "gsap";
 
 export default function Services() {
-  useEffect(() => {
-    // This will run when the component mounts
-    if (window.jQuery && window.TweenMax && window.TimelineMax) {
-      // Ensure that jQuery and GSAP are loaded
-      const script = document.createElement("script");
-      script.src = `./assets/js/custom.js`;
-      script.async = true;
-      document.body.appendChild(script);
-
-      return () => {
-        // Clean up the script if needed
-        document.body.removeChild(script);
-      };
-    }
-  }, []);
   useEffect(() => {
     AOS.init();
   }, []);

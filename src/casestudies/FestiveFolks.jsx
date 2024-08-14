@@ -26,10 +26,6 @@ export default function FestiveFolks() {
     AOS.init();
   }, []);
 
-  useEffect(()=>{
-    window.scrollTo(0, 0);
-  },[])
-
   return (
     <>
       <Helmet>

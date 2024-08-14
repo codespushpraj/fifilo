@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
-import $ from "jquery"; // import jQuery
+import $ from "jquery";
 import anime from "animejs";
 import AOS from "aos";
 import "aos/dist/aos.css";

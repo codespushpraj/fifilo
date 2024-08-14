@@ -26,10 +26,6 @@ export default function CureHub() {
     AOS.init();
   }, []);
 
-  useEffect(()=>{
-    window.scrollTo(0, 0);
-  },[])
-
   return (
     <>
       <Helmet>

@@ -20,6 +20,10 @@ import ScrollToTop from "./layout/Scrolltotop.jsx";
 import AOS from "aos";
 import "owl.carousel";
 import "aos/dist/aos.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.bundle.js";
+// import './assets/css/style.css';
+// import './assets/css/responsive.css';
 function App() {
   useEffect(() => {
     $(document).ready(function () {

@@ -1,10 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Helmet } from "react-helmet";
 import FreqentlyAsk from "./FreqentlyAsk";
-import $ from "jquery"; // import jQuery
-// import 'owl.carousel/dist/assets/owl.carousel.css';
-// import 'owl.carousel/dist/assets/owl.theme.default.css';
-// import 'owl.carousel';
+import $ from "jquery";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { NavLink } from "react-router-dom";
@@ -147,11 +144,11 @@ export default function Home() {
       <div className="hero__bnr" ref={heroBnrRef}>
         <div className="container">
           <div className="bnr__content">
-            <h1>
+            <h1 data-aos="fade-up" data-aos-duration="800">
               Design & dev studio for <br />
               you <span>in the fast lane</span>
             </h1>
-            <h6>
+            <h6 data-aos="fade-up" data-aos-duration="800">
               Elevate Your Brand with Our Premier UI/UX Design Services. Partner with the Best <span>UI/UX Design</span> Company and Watch Your Vision Shine!
             </h6>
 
@@ -168,7 +165,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="about__section">
+      <div className="about__section rn__section__gapTop"  data-aos="fade-up" data-aos-duration="800">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-10">
