@@ -144,6 +144,7 @@ export default function Home() {
       <div className="hero__bnr" ref={heroBnrRef}>
         <div className="container">
           <div className="bnr__content">
+            {/* heading */}
             <h1 data-aos="fade-up" data-aos-duration="800">
               Design & dev studio for <br />
               you <span>in the fast lane</span>
