@@ -4,6 +4,7 @@ import $ from "jquery";
 import { another, getdata } from "./New";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { NavLink } from "react-router-dom";
 
 export default function CureHub() {
   useEffect(() => {
@@ -61,7 +62,7 @@ export default function CureHub() {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Overview</h3>
+                <h3>Brief Insight of the Project</h3>
                 <p>
                   Cure Hub Gym, a popular fitness center, faced a challenge in providing its members with a unique and engaging membership experience. While they offered traditional membership
                   options, they wanted to introduce a novel approach to attract and retain members. The primary problem was that existing fitness apps didn't offer an innovative way for members to
@@ -71,19 +72,19 @@ export default function CureHub() {
               <div className="card__bx" data-aos="fade-up" data-aos-duration="800">
                 <div>
                   <p>Client</p>
-                  <h5>TribeStays</h5>
+                  <h5>Cure Hub</h5>
                 </div>
                 <div>
                   <p>Timeline</p>
-                  <h5>6 Months</h5>
+                  <h5>3 Months</h5>
                 </div>
                 <div>
                   <p>Screens</p>
-                  <h5>150+</h5>
+                  <h5>30+</h5>
                 </div>
                 <div>
                   <p>Business Type</p>
-                  <h5>Hospitality & Real Estate</h5>
+                  <h5>Health</h5>
                 </div>
               </div>
             </div>
@@ -92,7 +93,7 @@ export default function CureHub() {
               <div className="row">
                 <div className="col-12">
                   <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                    <h3>Problem</h3>
+                    <h3>Core Issue We Addressed</h3>
                     <p>
                       Cure Hub Gym, a popular fitness center, faced a challenge in providing its members with a unique and engaging membership experience. While they offered traditional membership
                       options, they wanted to introduce a novel approach to attract and retain members. The primary problem was that existing fitness apps didn't offer an innovative way for members to
@@ -102,7 +103,7 @@ export default function CureHub() {
                 </div>
                 <div className="col-12">
                   <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                    <h3>Solution</h3>
+                    <h3>Strategy and Approach</h3>
                     <p>
                       <span>Membership Redesign -</span> Dynamic Daily Coupons: We implemented a feature where members receive a unique daily coupon code that unlocks various benefits, such as
                       discounts on classNamees, free smoothies, or exclusive access to specific workout routines. Member Engagement: This feature not only adds an element of surprise but also
@@ -368,7 +369,7 @@ export default function CureHub() {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Style Guide & Components</h3>
+                <h3>Style Guide and Key Components</h3>
                 <p>
                   As a team, we collaborated on the style guide to ensure consistency and enhance the overall quality of the product. Our primary focus was on typography, icons, and updating colors to
                   align with WCAG standards.
@@ -497,7 +498,7 @@ export default function CureHub() {
 
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Visual Output</h3>
+                <h3>Updated Look and Feel</h3>
                 <p>
                   As a team, we collaborated on the style guide to ensure consistency and enhance the overall quality of the product. Our primary focus was on typography, icons, and updating colors to
                   align with WCAG standards.
@@ -536,7 +537,7 @@ export default function CureHub() {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Conclusion</h3>
+                <h3>How Fifilo Designs Drives Value for Cure Hub</h3>
                 <p>
                   By implementing a comprehensive UI/UX redesign and integrating advanced features such as virtual tours, and a streamlined booking process, TribeStays will significantly enhance its
                   platform's usability and aesthetic appeal. This transformation will lead to increased user engagement and satisfaction, higher customer acquisition and retention rates, and a
@@ -564,18 +565,19 @@ export default function CureHub() {
             <div className="col-lg-6 col-md-6" data-aos="fade-right" data-aos-duration="800">
               <div className="card__caseStudies">
                 <div className="top__keywords">
-                  <span>Product Design</span>
-                  <span>Case Study</span>
+                  <span>UI/UX Design</span>
                 </div>
                 <h4>
-                  CSA Centre{" "}
-                  <a href="" className="btn">
-                    <img src="assets/img/arrow-up-right.svg" alt="" />
-                  </a>
+                  <NavLink to="/interact/">
+                    Interact{" "}
+                    <img src="assets/img/arrow-up-right.svg" alt="case-studies" />
+                  </NavLink>
                 </h4>
-                <p>Creating a new hub for vital research & resources</p>
+                <p>Turn all your Calls into AI-Powered conversation intelligence tools</p>
                 <div className="img__box">
-                  <img src="assets/img/more-project-01.png" alt="" />
+                  <NavLink to="/interact/">
+                    <img src="./assets/img/cs-3.png" alt="" />
+                  </NavLink>
                 </div>
               </div>
             </div>
@@ -583,18 +585,20 @@ export default function CureHub() {
             <div className="col-lg-6 col-md-6" data-aos="fade-left" data-aos-duration="800">
               <div className="card__caseStudies">
                 <div className="top__keywords">
-                  <span>Product Design</span>
-                  <span>Case Study</span>
+                  <span>UI/UX Design</span>
+                  <span>Website Developmen</span>
                 </div>
                 <h4>
-                  CSA Centre{" "}
-                  <a href="" className="btn">
-                    <img src="assets/img/arrow-up-right.svg" alt="" />
-                  </a>
+                  <NavLink to="/spv-mortgages/">
+                    SPV Mortgages{" "}
+                    <img src="assets/img/arrow-up-right.svg" alt="case-studies" />
+                  </NavLink>
                 </h4>
-                <p>Creating a new hub for vital research & resources</p>
+                <p>Maximizing Tax Efficiency with SPV Limited Company Mortgages</p>
                 <div className="img__box">
-                  <img src="assets/img/more-project-01.png" alt="" />
+                  <NavLink to="/spv-mortgages/">
+                    <img src="./assets/img/cs-4.png" alt="" />
+                  </NavLink>
                 </div>
               </div>
             </div>

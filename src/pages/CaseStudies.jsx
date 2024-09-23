@@ -104,7 +104,7 @@ export default function Work() {
         init();
       })();
     });
-    return () => {};
+    return () => { };
   }, []);
   useEffect(() => {
     AOS.init();
@@ -126,17 +126,11 @@ export default function Work() {
         <div className="container">
           <div className="bnr__content">
             <div className="left__bx" data-aos="fade-up" data-aos-duration="800">
-              <h2>
-                Highlighting Our <br />
-                <span>Best UI UX Design Work</span>
-              </h2>
-              <h6>
-                Check out some of our favourite projects! Here, we share how we’ve brought ideas to life with our unique designs and user-friendly solutions. See how we’ve helped brands shine and
-                create memorable digital experiences.
-              </h6>
+              <h2>Showcasing Our<br /><span>Finest Case Studies</span></h2>
+              <h6>Take a look at some of our favorite projects, where creativity meets purpose. See how we've brought ideas to life with designs that make brands stand out and create lasting impressions online.</h6>
             </div>
             <div data-aos="fade-up" data-aos-duration="800">
-              <NavLink to="/contactus" className="btn">
+              <NavLink to="/contact-us/" className="btn">
                 Lets Connect <span></span>
               </NavLink>
             </div>
@@ -186,16 +180,19 @@ export default function Work() {
                 <div className="top__keywords">
                   <span>UI/UX Design</span>
                   <span>Website Development</span>
+                  <span>Mobile App</span>
                 </div>
                 <h4>
-                  SPV Mortgages{" "}
-                  <NavLink to="/spvmortgages" className="btn">
+                  <NavLink to="/my-choize/">
+                    Mychoize{" "}
                     <img src="./assets/img/arrow-up-right.svg" alt="work" />
                   </NavLink>
                 </h4>
-                <p>Maximizing Tax Efficiency with SPV Limited Company Mortgages</p>
+                <p>India's largest Car Rental Company Owned by ORIX</p>
                 <div className="img__box">
-                  <img src="./assets/img/case-studies-03.png" alt="case-studies" />
+                  <NavLink to="/my-choize/">
+                    <img src="./assets/img/case-studies-05.png" alt="case-studies" />
+                  </NavLink>
                 </div>
               </div>
             </div>
@@ -207,14 +204,16 @@ export default function Work() {
                   <span>UI/UX Design</span>
                 </div>
                 <h4>
-                  TribeStays{" "}
-                  <NavLink to="/tribestays" className="btn">
+                  <NavLink to="/tribe-stays/">
+                    TribeStays{" "}
                     <img src="./assets/img/arrow-up-right.svg" alt="case-studies" />
                   </NavLink>
                 </h4>
                 <p>Creating a new hub for vital research & resources</p>
                 <div className="img__box">
-                  <img src="./assets/img/cs-1.png" alt="case-studies" />
+                  <NavLink to="/tribe-stays/">
+                    <img src="./assets/img/cs-1.png" alt="case-studies" />
+                  </NavLink>
                 </div>
               </div>
             </div>
@@ -226,14 +225,16 @@ export default function Work() {
                   <span>UI/UX Design</span>
                 </div>
                 <h4>
-                  Cure Hub{" "}
-                  <NavLink to="/curehub" className="btn">
+                  <NavLink to="/curehub/">
+                    Cure Hub{" "}
                     <img src="./assets/img/arrow-up-right.svg" alt="case-studies" />
                   </NavLink>
                 </h4>
                 <p>Make hitting the GYM a habit you will love the App.</p>
                 <div className="img__box">
-                  <img src="./assets/img/cs-2.png" alt="case-studies" />
+                  <NavLink to="/curehub/">
+                    <img src="./assets/img/cs-2.png" alt="case-studies" />
+                  </NavLink>
                 </div>
               </div>
             </div>
@@ -244,14 +245,16 @@ export default function Work() {
                   <span>UI/UX Design</span>
                 </div>
                 <h4>
-                  Interact{" "}
-                  <NavLink to="/interact" className="btn">
+                  <NavLink to="/interact/">
+                    Interact{" "}
                     <img src="./assets/img/arrow-up-right.svg" alt="case-studies" />
                   </NavLink>
                 </h4>
                 <p>Turn all your Calls into AI-Powered conversation intelligence tools</p>
                 <div className="img__box">
-                  <img src="./assets/img/cs-3.png" alt="case-studies" />
+                  <NavLink to="/interact/">
+                    <img src="./assets/img/cs-3.png" alt="case-studies" />
+                  </NavLink>
                 </div>
               </div>
             </div>
@@ -263,121 +266,79 @@ export default function Work() {
                   <span>Website Development</span>
                 </div>
                 <h4>
-                  Festive Folks{" "}
-                  <NavLink to="/festivefolks" className="btn">
+                  <NavLink to="/festive-folks/">
+                    Festive Folks{" "}
                     <img src="./assets/img/arrow-up-right.svg" alt="case-studies" />
                   </NavLink>
                 </h4>
                 <p>Take your shopping Fashion needs to next level</p>
                 <div className="img__box">
-                  <img src="./assets/img/cs-5.png" alt="case-studies" />
+                  <NavLink to="/festive-folks/">
+                    <img src="./assets/img/cs-5.png" alt="case-studies" />
+                  </NavLink>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div className="faq__section rn__section__gapTop">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-4 col-md-4">
-              <div className="main__heading" data-aos="fade-up" data-aos-duration="800">
-                <p>FAQ’s</p>
-                <h2>Frequently Asked Questions</h2>
+            <div className="col-lg-7 col-md-12" data-aos="fade-right" data-aos-duration="800">
+              <div className="card__caseStudies">
+                <div className="top__keywords">
+                  <span>Website Development</span>
+                  <span>UI/UX Design</span>
+                </div>
+                <h4>
+                  <NavLink to="/tw-challenge/">
+                    TWChallenge{" "}
+                    <img src="./assets/img/arrow-up-right.svg" alt="case-studies" />
+                  </NavLink>
+                </h4>
+                <p>Cultivating culture of engagement</p>
+                <div className="img__box">
+                  <NavLink to="/tw-challenge/">
+                    <img src="./assets/img/case-studies-04.png" alt="case-studies" />
+                  </NavLink>
+                </div>
               </div>
             </div>
-            <div className="col-lg-8 col-md-8">
-              <div className="accordion" id="accordionExample">
-                <div className="accordion-item" data-aos="fade-up" data-aos-duration="800">
-                  <h2 className="accordion-header" id="heading01">
-                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse01" aria-expanded="true" aria-controls="collapse01">
-                      What kind of projects do you showcase in your portfolio?
-                    </button>
-                  </h2>
-                  <div id="collapse01" className="accordion-collapse collapse show" aria-labelledby="heading01" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <h6>
-                        We feature a diverse range of projects, including UI/UX design for websites and apps, branding efforts, and custom digital solutions. Our portfolio highlights how we bring
-                        creativity and functionality together to create memorable user experiences.
-                      </h6>
-                    </div>
-                  </div>
+
+            <div className="col-lg-5 col-md-12" data-aos="fade-left" data-aos-duration="800">
+              <div className="card__caseStudies">
+                <div className="top__keywords">
+                  <span>Branding</span>
+                  <span>UI/UX Design</span>
                 </div>
-                <div className="accordion-item" data-aos="fade-up" data-aos-duration="900">
-                  <h2 className="accordion-header" id="heading02">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse02" aria-expanded="false" aria-controls="collapse02">
-                      Can I see examples of work related to my industry?
-                    </button>
-                  </h2>
-                  <div id="collapse02" className="accordion-collapse collapse" aria-labelledby="heading03" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <h6>
-                        Absolutely! Our portfolio includes projects across various industries. Feel free to browse and explore the examples that best match your industry, or get in touch with us for
-                        specific case studies.
-                      </h6>
-                    </div>
-                  </div>
+                <h4>
+                  <NavLink to="/flipfolder/">
+                    Flip Folder{" "}
+                    <img src="./assets/img/arrow-up-right.svg" alt="case-studies" />
+                  </NavLink>
+                </h4>
+                <p>Dive into the hassle free world of sheet music</p>
+                <div className="img__box">
+                  <NavLink to="/flipfolder/">
+                    <img src="./assets/img/cs-7.png" alt="case-studies" />
+                  </NavLink>
                 </div>
-                <div className="accordion-item" data-aos="fade-up" data-aos-duration="1000">
-                  <h2 className="accordion-header" id="heading03">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse03" aria-expanded="false" aria-controls="collapse03">
-                      How often is your portfolio updated?
-                    </button>
-                  </h2>
-                  <div id="collapse03" className="accordion-collapse collapse" aria-labelledby="heading03" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <h6>
-                        We regularly update our portfolio to include our latest and most exciting projects. Check back often to see our newest work and the innovative solutions we’re providing for our
-                        clients.
-                      </h6>
-                    </div>
-                  </div>
+              </div>
+            </div>
+
+            <div className="col-12" data-aos="fade-right" data-aos-duration="800">
+              <div className="card__caseStudies">
+                <div className="top__keywords">
+                  <span>UI/UX Design</span>
+                  <span>Website Development</span>
                 </div>
-                <div className="accordion-item" data-aos="fade-up" data-aos-duration="1100">
-                  <h2 className="accordion-header" id="heading04">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse04" aria-expanded="false" aria-controls="collapse04">
-                      Can I get a detailed case study of a project?
-                    </button>
-                  </h2>
-                  <div id="collapse04" className="accordion-collapse collapse" aria-labelledby="heading04" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <h6>
-                        Yes, we’re happy to provide detailed case studies upon request. Just reach out to us, and we can share in-depth information about how we tackled specific challenges and
-                        delivered results for our clients.
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item" data-aos="fade-up" data-aos-duration="1200">
-                  <h2 className="accordion-header" id="heading05">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse05" aria-expanded="false" aria-controls="collapse05">
-                      How do I know if your design style matches my needs?
-                    </button>
-                  </h2>
-                  <div id="collapse05" className="accordion-collapse collapse" aria-labelledby="heading06" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <h6>
-                        Our portfolio showcases a variety of styles and approaches. By exploring our work, you can get a sense of our design capabilities and versatility. If you have specific
-                        preferences, let us know, and we can tailor our approach to fit your vision.
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item" data-aos="fade-up" data-aos-duration="1400">
-                  <h2 className="accordion-header" id="heading06">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse06" aria-expanded="false" aria-controls="collapse06">
-                      Do you work with clients from different locations?
-                    </button>
-                  </h2>
-                  <div id="collapse06" className="accordion-collapse collapse" aria-labelledby="heading06" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <h6>
-                        Yes, we work with clients from all over the world. Whether you’re nearby or across the globe, we’re equipped to handle projects remotely and ensure seamless communication and
-                        collaboration.
-                      </h6>
-                    </div>
-                  </div>
+                <h4>
+                  <NavLink to="/spv-mortgages/">
+                    SPV Mortgages{" "}
+                    <img src="./assets/img/arrow-up-right.svg" alt="work" />
+                  </NavLink>
+                </h4>
+                <p>Maximizing Tax Efficiency with SPV Limited Company Mortgages</p>
+                <div className="img__box">
+                  <NavLink to="/spv-mortgages/">
+                    <img src="./assets/img/case-studies-03.png" alt="case-studies" />
+                  </NavLink>
                 </div>
               </div>
             </div>

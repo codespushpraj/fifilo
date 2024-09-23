@@ -4,7 +4,7 @@ import Home from "./pages/Home.jsx";
 import Footer from "./layout/Footer.jsx";
 import About from "./pages/About.jsx";
 import Services from "./pages/Services.jsx";
-import Work from "./pages/Work.jsx";
+import CaseStudies from "./pages/CaseStudies.jsx";
 import ContactUs from "./pages/ContactUs.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import $ from "jquery"; // import jQuery
@@ -15,15 +15,16 @@ import FestiveFolks from "./casestudies/FestiveFolks.jsx";
 import Interact from "./casestudies/Interact.jsx";
 import SPVMortgages from "./casestudies/SPVMortgages.jsx";
 import TribeStays from "./casestudies/TribeStays.jsx";
-import ThankYou from "./pages/thank-you.jsx";
+import MyChoize from "./casestudies/MyChoize.jsx";
+import TwChallenge from "./casestudies/TwCallenge.jsx";
+import FlipFolder from "./casestudies/FlipFolder.jsx";
+import ThankYou from "./pages/ThankYou.jsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
+// import NotFound from "./pages/NotFound.jsx";
 import ScrollToTop from "./layout/Scrolltotop.jsx";
 import AOS from "aos";
 import "owl.carousel";
 import "aos/dist/aos.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "bootstrap/dist/js/bootstrap.bundle.js";
-// import './assets/css/style.css';
-// import './assets/css/responsive.css';
 function App() {
   useEffect(() => {
     $(document).ready(function () {
@@ -56,14 +57,19 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/career" element={<Career />} />
-        <Route path="/contactus" element={<ContactUs />} />
-        <Route path="/work" element={<Work />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/curehub" element={<CureHub />} />
-        <Route path="/festivefolks" element={<FestiveFolks />} />
+        <Route path="/festive-folks" element={<FestiveFolks />} />
         <Route path="/interact" element={<Interact />} />
-        <Route path="/spvmortgages" element={<SPVMortgages />} />
-        <Route path="/tribestays" element={<TribeStays />} />
+        <Route path="/spv-mortgages" element={<SPVMortgages />} />
+        <Route path="/tribe-stays" element={<TribeStays />} />
+        <Route path="/my-choize" element={<MyChoize />} />
+        <Route path="/tw-challenge" element={<TwChallenge />} />
+        <Route path="/flipfolder" element={<FlipFolder />} />
         <Route path="/thank-you" element={<ThankYou />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
       <Footer />
     </BrowserRouter>

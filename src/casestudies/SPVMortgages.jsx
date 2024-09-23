@@ -4,6 +4,7 @@ import $ from "jquery";
 import { another, getdata } from "./New";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { NavLink } from "react-router-dom";
 
 export default function SPVMortgages() {
   useEffect(() => {
@@ -61,7 +62,7 @@ export default function SPVMortgages() {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Overview</h3>
+                <h3>Brief Insight of the Project</h3>
                 <p>
                   SPV Mortgages, a specialist in providing tax-efficient SPV limited company mortgage solutions, sought to revamp their online presence to better serve their clients and streamline the
                   process of finding and securing mortgage deals. The goal was to create an intuitive, user-friendly, and visually appealing platform that effectively communicated their expertise and
@@ -92,7 +93,7 @@ export default function SPVMortgages() {
               <div className="row">
                 <div className="col-12">
                   <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                    <h3>Problem</h3>
+                    <h3>Core Issue We Addressed</h3>
                     <p>
                       The existing website struggled to present complex financial information clearly, causing user confusion and frustration. Navigation was unintuitive, making it difficult for users
                       to find necessary information. The site lacked engagement features and was not mobile-friendly, resulting in lower user engagement, higher bounce rates, and missed client
@@ -102,7 +103,7 @@ export default function SPVMortgages() {
                 </div>
                 <div className="col-12">
                   <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                    <h3>Solution</h3>
+                    <h3>Strategy and Approach</h3>
                     <p>
                       We addressed these challenges by conducting user research to inform a user-centric design. We crafted a clean, modern interface with simplified navigation, making it easy for
                       users to find information and book consultations. Engaging features like mortgage calculators and FAQ sections were integrated to provide value and encourage interaction. The
@@ -319,7 +320,7 @@ export default function SPVMortgages() {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Old Design</h3>
+                <h3>What the Original Design Looked Like</h3>
                 <p>The old SPV Mortgages website was cluttered, difficult to navigate, and not mobile-friendly, causing user frustration and poor engagement.</p>
               </div>
             </div>
@@ -334,7 +335,7 @@ export default function SPVMortgages() {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Style Guide & Components</h3>
+                <h3>Style Guide and Key Components</h3>
                 <p>
                   As a team, we collaborated on the style guide to ensure consistency and enhance the overall quality of the product. Our primary focus was on typography, icons, and updating colors to
                   align with WCAG standards.
@@ -473,7 +474,7 @@ export default function SPVMortgages() {
 
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>New Visual Output</h3>
+                <h3>Updated Look and Feel</h3>
                 <p>
                   The new design by us features a modern, intuitive layout, clear financial information, simplified navigation, and full mobile optimization, resulting in improved user experience and
                   higher engagement.
@@ -500,7 +501,7 @@ export default function SPVMortgages() {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Results</h3>
+                <h3>Impact and Improvements</h3>
                 <ul>
                   <li>Improved User Experience: The revamped website received positive feedback from users, who found it easier to navigate and more informative.</li>
                   <li>Increased Engagement: There was a significant increase in the number of users booking free consultations through the website.</li>
@@ -512,7 +513,7 @@ export default function SPVMortgages() {
 
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Conclusion</h3>
+                <h3>How Fifilo Designs Drives Value for SPV Mortgages</h3>
                 <p>
                   By implementing a comprehensive UI/UX redesign and integrating advanced features such as virtual tours, and a streamlined booking process, TribeStays will significantly enhance its
                   platform's usability and aesthetic appeal. This transformation will lead to increased user engagement and satisfaction, higher customer acquisition and retention rates, and a
@@ -540,18 +541,20 @@ export default function SPVMortgages() {
             <div className="col-lg-6 col-md-6" data-aos="fade-right" data-aos-duration="800">
               <div className="card__caseStudies">
                 <div className="top__keywords">
-                  <span>Product Design</span>
-                  <span>Case Study</span>
+                  <span>Development</span>
+                  <span>UI/UX Design</span>
                 </div>
                 <h4>
-                  CSA Centre{" "}
-                  <a href="" className="btn">
-                    <img src="assets/img/arrow-up-right.svg" alt="" />
-                  </a>
+                  <NavLink to="/tribe-stays/">
+                    TribeStays{" "}
+                    <img src="assets/img/arrow-up-right.svg" alt="case-studies" />
+                  </NavLink>
                 </h4>
                 <p>Creating a new hub for vital research & resources</p>
                 <div className="img__box">
-                  <img src="assets/img/more-project-01.png" alt="" />
+                  <NavLink to="/tribe-stays/">
+                    <img src="./assets/img/cs-1.png" alt="" />
+                  </NavLink>
                 </div>
               </div>
             </div>
@@ -559,18 +562,20 @@ export default function SPVMortgages() {
             <div className="col-lg-6 col-md-6" data-aos="fade-left" data-aos-duration="800">
               <div className="card__caseStudies">
                 <div className="top__keywords">
-                  <span>Product Design</span>
-                  <span>Case Study</span>
+                  <span>Branding</span>
+                  <span>UI/UX Design</span>
                 </div>
                 <h4>
-                  CSA Centre{" "}
-                  <a href="" className="btn">
-                    <img src="assets/img/arrow-up-right.svg" alt="" />
-                  </a>
+                  <NavLink to="/curehub/">
+                    Cure Hub{" "}
+                    <img src="assets/img/arrow-up-right.svg" alt="case-studies" />
+                  </NavLink>
                 </h4>
-                <p>Creating a new hub for vital research & resources</p>
+                <p>Make hitting the GYM a habit you will love the App.</p>
                 <div className="img__box">
-                  <img src="assets/img/more-project-01.png" alt="" />
+                  <NavLink to="/curehub/">
+                    <img src="./assets/img/cs-2.png" alt="" />
+                  </NavLink>
                 </div>
               </div>
             </div>

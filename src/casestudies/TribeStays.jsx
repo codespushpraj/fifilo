@@ -4,6 +4,7 @@ import $ from "jquery";
 import { another, getdata } from "./New";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { NavLink } from "react-router-dom";
 
 export default function TribeStays() {
   useEffect(() => {
@@ -61,7 +62,7 @@ export default function TribeStays() {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Overview</h3>
+                <h3>Brief Insight of the Project</h3>
                 <p>
                   TribeStays is a rapidly growing startup that offers premium student hostels and co-living spaces designed to provide an immersive and luxurious living experience for students.
                   However, despite their unique offerings, they face a significant challenge. Their existing user interface (UI) and user experience (UX) design are outdated and do not effectively
@@ -79,7 +80,7 @@ export default function TribeStays() {
                 </div>
                 <div>
                   <p>Screens</p>
-                  <h5>150+</h5>
+                  <h5>120+</h5>
                 </div>
                 <div>
                   <p>Business Type</p>
@@ -92,7 +93,7 @@ export default function TribeStays() {
               <div className="row">
                 <div className="col-12">
                   <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                    <h3>Problem</h3>
+                    <h3>Core Issue We Addressed</h3>
                     <p>
                       TribeStays is a rapidly growing startup that offers premium student hostels and co-living spaces designed to provide an immersive and luxurious living experience for students.
                       However, despite their unique offerings, they face a significant challenge. Their existing user interface (UI) and user experience (UX) design are outdated and do not effectively
@@ -102,7 +103,7 @@ export default function TribeStays() {
                 </div>
                 <div className="col-12">
                   <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                    <h3>Solution</h3>
+                    <h3>Strategy and Approach</h3>
                     <p>
                       To address the challenge of TribeStays' outdated UI/UX design, a comprehensive redesign of their digital presence is essential. This involves creating a modern, user-friendly,
                       and visually appealing interface that effectively highlights the luxury and convenience of their premium student hostels and co-living spaces. The redesign should include
@@ -349,7 +350,7 @@ export default function TribeStays() {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Style Guide & Components</h3>
+                <h3>Style Guide and Key Components</h3>
                 <p>
                   As a team, we collaborated on the style guide to ensure consistency and enhance the overall quality of the product. Our primary focus was on typography, icons, and updating colors to
                   align with WCAG standards.
@@ -482,7 +483,7 @@ export default function TribeStays() {
 
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Visual Output</h3>
+                <h3>Updated Look and Feel</h3>
                 <p>
                   As a team, we collaborated on the style guide to ensure consistency and enhance the overall quality of the product. Our primary focus was on typography, icons, and updating colors to
                   align with WCAG standards.
@@ -514,7 +515,7 @@ export default function TribeStays() {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="content__box">
-                <h3>Conclusion</h3>
+                <h3>How Fifilo Designs Drives Value for TribeStays</h3>
                 <p>
                   By implementing a comprehensive UI/UX redesign and integrating advanced features such as virtual tours, and a streamlined booking process, TribeStays will significantly enhance its
                   platform's usability and aesthetic appeal. This transformation will lead to increased user engagement and satisfaction, higher customer acquisition and retention rates, and a
@@ -542,18 +543,20 @@ export default function TribeStays() {
             <div className="col-lg-6 col-md-6" data-aos="fade-right" data-aos-duration="800">
               <div className="card__caseStudies">
                 <div className="top__keywords">
-                  <span>Product Design</span>
-                  <span>Case Study</span>
+                  <span>UI/UX De sign</span>
+                  <span>Website Developmen</span>
                 </div>
                 <h4>
-                  CSA Centre{" "}
-                  <a href="#" className="btn">
-                    <img src="assets/img/arrow-up-right.svg" alt="" />
-                  </a>
+                  <NavLink to="/spv-mortgages/">
+                    SPV Mortgages{" "}
+                    <img src="assets/img/arrow-up-right.svg" alt="case-studies" />
+                  </NavLink>
                 </h4>
-                <p>Creating a new hub for vital research & resources</p>
+                <p>Maximizing Tax Efficiency with SPV Limited Company Mortgages</p>
                 <div className="img__box">
-                  <img src="assets/img/more-project-01.png" alt="" />
+                  <NavLink to="/spv-mortgages/">
+                    <img src="./assets/img/cs-4.png" alt="" />
+                  </NavLink>
                 </div>
               </div>
             </div>
@@ -561,18 +564,20 @@ export default function TribeStays() {
             <div className="col-lg-6 col-md-6" data-aos="fade-left" data-aos-duration="800">
               <div className="card__caseStudies">
                 <div className="top__keywords">
-                  <span>Product Design</span>
-                  <span>Case Study</span>
+                  <span>UI/UX Design</span>
+                  <span>Website Developmenty</span>
                 </div>
                 <h4>
-                  CSA Centre{" "}
-                  <a href="#" className="btn">
-                    <img src="assets/img/arrow-up-right.svg" alt="" />
-                  </a>
+                  <NavLink to="/festive-folks/">
+                    Festive Folks{" "}
+                    <img src="assets/img/arrow-up-right.svg" alt="case-studies" />
+                  </NavLink>
                 </h4>
-                <p>Creating a new hub for vital research & resources</p>
+                <p>Take your shopping Fashion needs to next level</p>
                 <div className="img__box">
-                  <img src="assets/img/more-project-01.png" alt="" />
+                  <NavLink to="/festive-folks/">
+                    <img src="./assets/img/cs-5.png" alt="" />
+                  </NavLink>
                 </div>
               </div>
             </div>

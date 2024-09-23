@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="top__box">
             <h2>
               <span data-aos="fade-right">Let’s Work Together</span>{" "}
-              <NavLink to="/contactus" className="btn" data-aos="fade-left">
+              <NavLink to="/contact-us/" className="btn" data-aos="fade-left">
                 <img src="assets/img/arrow-up-right-b.svg" alt="" />
               </NavLink>
             </h2>
@@ -18,27 +18,35 @@ export default function Footer() {
           <div className="center__bx">
             <ul className="ftr__menu">
               <li>
-                <NavLink to="/work">work</NavLink>{" "}
+                <NavLink to="/case-studies/">Case Studies</NavLink>
               </li>
               <li>
-                <NavLink to="/about">about</NavLink>
+                <NavLink to="/about/">About</NavLink>
               </li>
               <li>
-                <NavLink to="/services">services</NavLink>
+                <NavLink to="/services/">Services</NavLink>
               </li>
               <li>
-                <NavLink to="/career">career</NavLink>
+                <NavLink to="/career/">Career</NavLink>
               </li>
               <li>
-                <NavLink to="/">privacy</NavLink>
+                <NavLink to="https://fifilo.com/blogs/">Blogs</NavLink>
               </li>
               <li>
-                <NavLink to="/contactus">contact</NavLink>
+                <NavLink to="/contact-us/">Contact</NavLink>
               </li>
+              <li>
+                <NavLink to="/privacy-policy/">Privacy Policy</NavLink>
+              </li>
+              {/* <li>
+                <NavLink to="/terms-conditions/">Terms & Conditions</NavLink>
+              </li> */}
             </ul>
             <div className="center__inr">
               <div className="ftr__logo">
-                <img src="assets/img/logo-dark.svg" alt="footer" />
+                <NavLink to="/">
+                  <img src="assets/img/logo.png" alt="footer" />
+                </NavLink>
               </div>
               <ul className="social__media">
                 <li>

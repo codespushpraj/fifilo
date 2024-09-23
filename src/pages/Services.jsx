@@ -2,12 +2,37 @@ import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import useCursorPosition from "../layout/useCursorPosition";
 
 export default function Services() {
+  useCursorPosition('dark__bnr');
+  const location = useLocation();
   useEffect(() => {
     AOS.init();
   }, []);
+
+  useEffect(() => {
+    if (location.hash) {
+      const section = document.getElementById(location.hash.slice(1));
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [location]);
+
+  function ScrollToSection() {
+    const location = useLocation();
+
+    useEffect(() => {
+      if (location.hash) {
+        const element = document.getElementById(location.hash.substring(1)); // Remove `#` and get the ID
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to the section
+        }
+      }
+    }, [location]);
+
+    return null;
+  }
 
   return (
     <>
@@ -26,124 +51,15 @@ export default function Services() {
         <div className="container">
           <div className="bnr__content">
             <div className="left__bx" data-aos="fade-up" data-aos-duration="800">
-              <h2>
-                Custom <span>Design Solutions</span>
-                <br />
-                for Your Unique Needs
-              </h2>
-              <h6>
-                Explore our personalized services crafted to meet your specific goals and bring your vision to
-                <br /> life with creativity and precision.
-              </h6>
+              <h2>Custom Design<br /><span>Crafted for Impact</span></h2>
+              <h6>Bring your vision to life with personalized digital solutions. From UI/UX design to web development and digital marketing, we turn your ideas into smooth, high-performing experience.</h6>
             </div>
             <div data-aos="fade-up" data-aos-duration="800">
-              <NavLink to="/contactus" className="btn">
+              <NavLink to="/contact-us/" className="btn">
                 Lets Connect <span></span>
               </NavLink>
             </div>
             <div className="animation-wrapper">
-              {/* <div className="stage">
-                <div className="cubes ten1"></div>
-                <div className="cubes ten1"></div>
-                <div className="cubes ten1"></div>
-                <div className="cubes ten1"></div>
-                <div className="cubes ten1"></div>
-                <div className="cubes ten1"></div>
-                <div className="cubes ten1"></div>
-                <div className="cubes ten1"></div>
-                <div className="cubes ten1"></div>
-
-                <div className="cubes ten1"></div>
-                <div className="cubes ten2"></div>
-                <div className="cubes ten2"></div>
-                <div className="cubes ten2"></div>
-                <div className="cubes ten2"></div>
-                <div className="cubes ten2"></div>
-                <div className="cubes ten2"></div>
-                <div className="cubes ten2"></div>
-                <div className="cubes ten2"></div>
-                <div className="cubes ten2"></div>
-
-                <div className="cubes ten2"></div>
-                <div className="cubes ten3"></div>
-                <div className="cubes ten3"></div>
-                <div className="cubes ten3"></div>
-                <div className="cubes ten3"></div>
-                <div className="cubes ten3"></div>
-                <div className="cubes ten3"></div>
-                <div className="cubes ten3"></div>
-                <div className="cubes ten3"></div>
-                <div className="cubes ten3"></div>
-
-                <div className="cubes ten3"></div>
-                <div className="cubes ten4"></div>
-                <div className="cubes ten4"></div>
-                <div className="cubes ten4"></div>
-                <div className="cubes ten4"></div>
-                <div className="cubes ten4"></div>
-                <div className="cubes ten4"></div>
-                <div className="cubes ten4"></div>
-                <div className="cubes ten4"></div>
-                <div className="cubes ten4"></div>
-
-                <div className="cubes ten4"></div>
-                <div className="cubes ten5"></div>
-                <div className="cubes ten5"></div>
-                <div className="cubes ten5"></div>
-                <div className="cubes ten5"></div>
-                <div className="cubes ten5"></div>
-                <div className="cubes ten5"></div>
-                <div className="cubes ten5"></div>
-                <div className="cubes ten5"></div>
-                <div className="cubes ten5"></div>
-
-                <div className="cubes ten5"></div>
-                <div className="cubes ten6"></div>
-                <div className="cubes ten6"></div>
-                <div className="cubes ten6"></div>
-                <div className="cubes ten6"></div>
-                <div className="cubes ten6"></div>
-                <div className="cubes ten6"></div>
-                <div className="cubes ten6"></div>
-                <div className="cubes ten6"></div>
-                <div className="cubes ten6"></div>
-
-                <div className="cubes ten6"></div>
-                <div className="cubes ten7"></div>
-                <div className="cubes ten7"></div>
-                <div className="cubes ten7"></div>
-                <div className="cubes ten7"></div>
-                <div className="cubes ten7"></div>
-                <div className="cubes ten7"></div>
-                <div className="cubes ten7"></div>
-                <div className="cubes ten7"></div>
-                <div className="cubes ten7"></div>
-
-                <div className="cubes ten7"></div>
-                <div className="cubes ten8"></div>
-                <div className="cubes ten8"></div>
-                <div className="cubes ten8"></div>
-                <div className="cubes ten8"></div>
-                <div className="cubes ten8"></div>
-                <div className="cubes ten8"></div>
-                <div className="cubes ten8"></div>
-                <div className="cubes ten8"></div>
-                <div className="cubes ten8"></div>
-
-                <div className="cubes ten8"></div>
-                <div className="cubes ten9"></div>
-                <div className="cubes ten9"></div>
-                <div className="cubes ten9"></div>
-                <div className="cubes ten9"></div>
-                <div className="cubes ten9"></div>
-                <div className="cubes ten9"></div>
-                <div className="cubes ten9"></div>
-                <div className="cubes ten9"></div>
-                <div className="cubes ten9"></div>
-
-                <div className="cubes ten9"></div>
-              </div> */}
-
               <div className="main-wrapper">
                 <div className="sphere-wrapper">
                   <div className="plane plane-1">
@@ -1473,7 +1389,7 @@ export default function Services() {
         </div>
       </div>
 
-      <div className="comn__serviceBox branding rn__section__gapTop" id="branding">
+      <div className="comn__serviceBox branding lite__bnr rn__section__gapTop" id="branding">
         <div className="container">
           <div className="row">
             <div className="col-lg-7 col-md-6">
@@ -1485,24 +1401,16 @@ export default function Services() {
                   <h2>Branding.</h2>
                 </div>
 
-                <img src="assets/img/service-icon.png" alt="service-icon" />
+                <div class="shapes shapes-1"></div>
+                {/* <img src="assets/img/service-icon.png" alt="service-icon" /> */}
               </div>
             </div>
             <div className="col-lg-5 col-md-6">
               <div className="right__bx">
-                <h6 data-aos="fade-up" data-aos-duration="800">
-                  At Fifilo Designs, we understand that your brand is the essence of your business. Our branding services go beyond just creating a logo; we craft a comprehensive brand identity that
-                  resonates with your audience and tells your story.
-                </h6>
+                <h6 data-aos="fade-up" data-aos-duration="800">Branding is more than a logo—it's your voice, your story, and your identity in a single, powerful presence. We create brand identities that cut through the noise and connect with your audience. From strategy to visual identity, we fuse creativity with insight to build a brand that not only stands out but leaves a lasting impression. </h6>
 
-                <h6 data-aos="fade-up" data-aos-duration="800">
-                  From market research and brand positioning to visual identity and messaging, we ensure every touchpoint reflects your unique value. Our team works closely with you to develop a brand
-                  strategy that not only differentiates you from the competition but also builds lasting connections with your customers.
-                </h6>
+                <h6 data-aos="fade-up" data-aos-duration="800">Let’s shape a brand that’s uniquely yours, with a seamless experience that sparks recognition, loyalty, and growth across every platform.</h6>
 
-                <h6 data-aos="fade-up" data-aos-duration="800">
-                  With our expertise, your brand will have a powerful and consistent presence across all platforms, driving recognition and loyalty.
-                </h6>
                 <div className="listing__bx" data-aos="fade-up" data-aos-duration="800">
                   <ul>
                     <li>Brand Strategy</li>
@@ -1519,7 +1427,7 @@ export default function Services() {
         </div>
       </div>
 
-      <div className="comn__serviceBox uiux__design bg__dark rn__section__gapTop">
+      <div className="comn__serviceBox uiux__design dark__bnr rn__section__gapTop" id="uiux-design">
         <div className="container">
           <div className="row">
             <div className="col-lg-7 col-md-6">
@@ -1531,21 +1439,14 @@ export default function Services() {
                   <h2>UI/UX Design.</h2>
                 </div>
 
-                <img src="assets/img/service-icon.png" alt="service-icon" />
+                <div class="shapes shapes-2"></div>
               </div>
             </div>
             <div className="col-lg-5 col-md-6">
               <div className="right__bx">
-                <h6 data-aos="fade-up" data-aos-duration="800">
-                  User experience is at the heart of what we do at Fifilo Designs. Our UI/UX design services are focused on creating intuitive and engaging interfaces that delight users. We start by
-                  understanding your users' needs and behaviors, then blend these insights with cutting-edge design principles to create seamless digital experiences. Whether it's a website, mobile
-                  app, or any digital platform, our designs ensure ease of use and aesthetic appeal.
-                </h6>
+                <h6 data-aos="fade-up" data-aos-duration="800">The user experience drives everything we do. Our UI UX design services are built around creating intuitive, visually engaging, and seamless digital interactions that users love. We dive deep into understanding your audience, what they need, how they think, and how they behave—to create designs that blend innovation with usability.</h6>
 
-                <h6 data-aos="fade-up" data-aos-duration="800">
-                  By prioritizing usability and accessibility, we help you deliver an experience that keeps users coming back. Our goal is to transform complex processes into simple, enjoyable
-                  interactions.
-                </h6>
+                <h6 data-aos="fade-up" data-aos-duration="800">From websites to mobile apps, we design interfaces that are not just beautiful but functional, accessible, and built to keep your users engaged. We believe in simplifying complexity, ensuring that every interaction is smooth and enjoyable. Whether you’re looking to build from scratch or enhance your current platform, our designs elevate the user experience and keep your audience coming back for more.</h6>
 
                 <div className="listing__bx" data-aos="fade-up" data-aos-duration="800">
                   <ul>
@@ -1567,7 +1468,7 @@ export default function Services() {
         </div>
       </div>
 
-      <div className="comn__serviceBox development rn__section__gapTop">
+      <div className="comn__serviceBox development lite__bnr rn__section__gapTop" id="development">
         <div className="container">
           <div className="row">
             <div className="col-lg-7 col-md-6">
@@ -1579,24 +1480,16 @@ export default function Services() {
                   <h2>Development.</h2>
                 </div>
 
-                <img src="assets/img/service-icon.png" alt="service-icon" />
+                <div class="shapes shapes-3"></div>
               </div>
             </div>
             <div className="col-lg-5 col-md-6">
               <div className="right__bx">
-                <h6 data-aos="fade-up" data-aos-duration="800">
-                  Bringing your digital vision to life requires robust and scalable development solutions, and that's exactly what we offer at Fifilo Designs. Our development team is adept at building
-                  high-quality websites, mobile apps, and custom software tailored to your business needs.
-                </h6>
+                <h6 data-aos="fade-up" data-aos-duration="800">We create digital ecosystems tailored to your business vision. Our expert development team specializes in crafting scalable, high-performance websites, mobile applications, and custom software that are designed to grow your business.</h6>
 
-                <h6 data-aos="fade-up" data-aos-duration="800">
-                  Using the latest technologies and best practices, we ensure your digital solutions are not only functional but also future-proof. We focus on creating a seamless user experience,
-                  with fast load times and responsive design that work across all devices.
-                </h6>
+                <h6 data-aos="fade-up" data-aos-duration="800">We ensure your digital solutions are responsive, fast, and built for today’s multi-device world with cutting-edge technologies. From seamless functionality to sleek user interfaces, our focus is on delivering an experience that not only meets your needs but exceeds your users' expectations.</h6>
 
-                <h6 data-aos="fade-up" data-aos-duration="800">
-                  Our commitment to quality and innovation ensures that your project is delivered on time and performs flawlessly.
-                </h6>
+                <h6 data-aos="fade-up" data-aos-duration="800">Ready to perform at the highest level?</h6>
 
                 <div className="listing__bx">
                   <div data-aos="fade-up" data-aos-duration="800">
@@ -1628,7 +1521,7 @@ export default function Services() {
         </div>
       </div>
 
-      <div className="comn__serviceBox digital__marketing bg__dark rn__section__gapTop">
+      <div className="comn__serviceBox digital__marketing dark__bnr rn__section__gapTop" id="digital-marketing">
         <div className="container">
           <div className="row">
             <div className="col-lg-7 col-md-6">
@@ -1637,24 +1530,17 @@ export default function Services() {
                   <h2>
                     <span>04</span>
                   </h2>
-                  <h2>Digital Marketing</h2>
+                  <h2>Digital Marketing.</h2>
                 </div>
 
-                <img src="assets/img/service-icon.png" alt="service-icon" />
+                <div class="shapes shapes-4"></div>
               </div>
             </div>
             <div className="col-lg-5 col-md-6">
               <div className="right__bx">
-                <h6 data-aos="fade-up" data-aos-duration="800">
-                  In today’s digital landscape, visibility is key to success. At Fifilo Designs, our digital marketing services are designed to enhance your online presence and drive meaningful
-                  engagement. From search engine optimization (SEO) and content marketing to social media management and pay-per-click (PPC) advertising, we deploy strategies that attract and convert
-                  your target audience.
-                </h6>
+                <h6 data-aos="fade-up" data-aos-duration="800">We transform your online presence into a powerful engine for growth. In an ever-evolving digital world, we craft dynamic marketing strategies that cut through the noise—whether it's SEO, content marketing, social media management, or PPC advertising. Our team drives engagement and conversions by reaching the right people at the right time.</h6>
 
-                <h6 data-aos="fade-up" data-aos-duration="800">
-                  Our data-driven approach ensures that every campaign is optimized for maximum impact and ROI. By understanding your business goals and audience, we craft compelling messages and
-                  campaigns that boost your brand's visibility and growth in a crowded digital space.
-                </h6>
+                <h6 data-aos="fade-up" data-aos-duration="800">We take a data-driven approach to ensure every campaign delivers measurable results, increasing visibility and ROI. </h6>
                 <div className="listing__bx" data-aos="fade-up" data-aos-duration="800">
                   <ul>
                     <li>Search Engine Optimization (SEO)</li>
@@ -1696,11 +1582,6 @@ export default function Services() {
             </div>
             <div className="col-lg-3 col-md-4 col-6">
               <div className="card__bx">
-                <img src="assets/img/sketch.png" data-aos="zoom-in" alt="card__bx" />
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-4 col-6">
-              <div className="card__bx">
                 <img src="assets/img/illustrator.png" data-aos="zoom-in" alt="card__bx" />
               </div>
             </div>
@@ -1716,22 +1597,62 @@ export default function Services() {
             </div>
             <div className="col-lg-3 col-md-4 col-6">
               <div className="card__bx">
-                <img src="assets/img/miro.png" data-aos="zoom-in" alt="card__bx" />
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-4 col-6">
-              <div className="card__bx">
-                <img src="assets/img/balsamiq.png" data-aos="zoom-in" alt="card__bx" />
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-4 col-6">
-              <div className="card__bx">
                 <img src="assets/img/zeplin.png" data-aos="zoom-in" alt="card__bx" />
               </div>
             </div>
             <div className="col-lg-3 col-md-4 col-6">
               <div className="card__bx">
-                <img src="assets/img/webflow.png" data-aos="zoom-in" alt="card__bx" />
+                <img src="assets/img/react.png" data-aos="zoom-in" alt="card__bx" />
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-4 col-6">
+              <div className="card__bx">
+                <img src="assets/img/node.png" data-aos="zoom-in" alt="card__bx" />
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-4 col-6">
+              <div className="card__bx">
+                <img src="assets/img/javascript.png" data-aos="zoom-in" alt="card__bx" />
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-4 col-6">
+              <div className="card__bx">
+                <img src="assets/img/php.png" data-aos="zoom-in" alt="card__bx" />
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-4 col-6">
+              <div className="card__bx">
+                <img src="assets/img/wordpress.png" data-aos="zoom-in" alt="card__bx" />
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-4 col-6">
+              <div className="card__bx">
+                <img src="assets/img/html.png" data-aos="zoom-in" alt="card__bx" />
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-4 col-6">
+              <div className="card__bx">
+                <img src="assets/img/css.png" data-aos="zoom-in" alt="card__bx" />
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-4 col-6">
+              <div className="card__bx">
+                <img src="assets/img/google-ads.png" data-aos="zoom-in" alt="card__bx" />
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-4 col-6">
+              <div className="card__bx">
+                <img src="assets/img/facebook-ads.png" data-aos="zoom-in" alt="card__bx" />
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-4 col-6">
+              <div className="card__bx">
+                <img src="assets/img/google-analytics.png" data-aos="zoom-in" alt="card__bx" />
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-4 col-6">
+              <div className="card__bx">
+                <img src="assets/img/mailchimp.png" data-aos="zoom-in" alt="card__bx" />
               </div>
             </div>
           </div>

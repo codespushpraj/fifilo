@@ -4,6 +4,7 @@ import $ from "jquery";
 import { another, getdata } from "./New";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { NavLink } from "react-router-dom";
 
 export default function FestiveFolks() {
   useEffect(() => {
@@ -61,7 +62,7 @@ export default function FestiveFolks() {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Overview</h3>
+                <h3>Brief Insight of the Project</h3>
                 <p>
                   Festive Folks is an innovative e-commerce platform dedicated to providing users with a seamless and enjoyable online shopping experience for all their festive needs. Specializing in
                   seasonal and holiday products, Festive Folks offers an extensive catalog of items, including apparel, and accessories tailored for various celebrations throughout the year. With a
@@ -86,6 +87,28 @@ export default function FestiveFolks() {
                 <div>
                   <p>Business Type</p>
                   <h5>E-Commerce</h5>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-lg-10">
+              <div className="row">
+                <div className="col-12">
+                  <div className="content__box" data-aos="fade-up" data-aos-duration="800">
+                    <h3>Core Issue We Addressed</h3>
+                    <p>The previous Festive Folks website lacked the visual appeal and functionality needed to match its vibrant product offerings. Users found it difficult to navigate through the product
+                      catalog, and the absence of personalized recommendations limited their ability to discover relevant festive items. Additionally, the website’s checkout process was cumbersome, which
+                      led to high cart abandonment rates. The overall design was not optimized for mobile devices, further diminishing user satisfaction and engagement.</p>
+                  </div>
+                </div>
+                <div className="col-12">
+                  <div className="content__box" data-aos="fade-up" data-aos-duration="800">
+                    <h3>Strategy and Approach</h3>
+                    <p>To address these challenges, we carried out extensive user research to understand the needs and behaviors of Festive Folks’ target audience. Our team redesigned the website with a
+                      clean and modern interface, incorporating easy-to-navigate categories and enhanced search functionality. We introduced personalized product recommendations and streamlined the checkout
+                      process to reduce friction and cart abandonment. The development team ensured that the website was fully responsive, providing a smooth shopping experience on mobile devices. Additionally,
+                      we optimized the platform for SEO and integrated secure, user-friendly payment options to build trust with customers.</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -290,7 +313,7 @@ export default function FestiveFolks() {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Style Guide & Components</h3>
+                <h3>Style Guide and Key Components</h3>
                 <p>
                   As a team, we collaborated on the style guide to ensure consistency and enhance the overall quality of the product. Our primary focus was on typography, icons, and updating colors to
                   align with WCAG standards.
@@ -425,7 +448,7 @@ export default function FestiveFolks() {
 
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Visual Output</h3>
+                <h3>Updated Look and Feel</h3>
                 <p>
                   The new design by us features a modern, intuitive layout, clear financial information, simplified navigation, and full mobile optimization, resulting in improved user experience and
                   higher engagement.
@@ -447,6 +470,31 @@ export default function FestiveFolks() {
             </div>
           </div>
         </div>
+
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-10">
+              <div className="content__box" data-aos="fade-up" data-aos-duration="800">
+                <h3>Impact and Improvements</h3>
+                <ul>
+                  <li>Improved User Experience: The revamped website provided users with an enjoyable shopping journey, leading to higher satisfaction levels and repeat visits.</li>
+                  <li>Higher Engagement: Personalized product recommendations and a simplified checkout process resulted in increased user interaction and longer browsing sessions.</li>
+                  <li>Increased Sales: The mobile-optimized design and improved navigation led to a notable increase in completed purchases and reduced cart abandonment rates.</li>
+                  <li>Enhanced Visibility: SEO improvements helped Festive Folks rank higher in search engine results, driving more organic traffic to the platform.</li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-lg-10">
+              <div className="content__box" data-aos="fade-up" data-aos-duration="800">
+                <h3>How Fifilo Designs Drives Value for Festive Folks</h3>
+                <p>By implementing a comprehensive redesign and optimizing the user journey, Festive Folks transformed its platform into a more engaging, user-friendly experience.
+                  The website now supports seamless navigation, personalized shopping, and secure transactions, resulting in increased sales and customer loyalty. This digital
+                  transformation positions Festive Folks as a leading e-commerce platform for festive products, providing users with a delightful and stress-free shopping experience
+                  across all devices. Moving forward, the platform is well-equipped to support future growth and continue delivering joy to customers during festive seasons.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="our__work bg__dark explore__more rn__section__gapTop">
@@ -460,18 +508,20 @@ export default function FestiveFolks() {
             <div className="col-lg-6 col-md-6" data-aos="fade-right" data-aos-duration="800">
               <div className="card__caseStudies">
                 <div className="top__keywords">
-                  <span>Product Design</span>
-                  <span>Case Study</span>
+                  <span>Development</span>
+                  <span>UI/UX Design</span>
                 </div>
                 <h4>
-                  CSA Centre{" "}
-                  <a href="" className="btn">
-                    <img src="assets/img/arrow-up-right.svg" alt="" />
-                  </a>
+                  <NavLink to="/tribe-stays/">
+                    TribeStays{" "}
+                    <img src="assets/img/arrow-up-right.svg" alt="case-studies" />
+                  </NavLink>
                 </h4>
                 <p>Creating a new hub for vital research & resources</p>
                 <div className="img__box">
-                  <img src="assets/img/more-project-01.png" alt="" />
+                  <NavLink to="/tribe-stays/">
+                    <img src="./assets/img/cs-1.png" alt="" />
+                  </NavLink>
                 </div>
               </div>
             </div>
@@ -479,18 +529,20 @@ export default function FestiveFolks() {
             <div className="col-lg-6 col-md-6" data-aos="fade-left" data-aos-duration="800">
               <div className="card__caseStudies">
                 <div className="top__keywords">
-                  <span>Product Design</span>
-                  <span>Case Study</span>
+                  <span>UI/UX Design</span>
+                  <span>Website Developmen</span>
                 </div>
                 <h4>
-                  CSA Centre{" "}
-                  <a href="" className="btn">
-                    <img src="assets/img/arrow-up-right.svg" alt="" />
-                  </a>
+                  <NavLink to="/spv-mortgages/">
+                    SPV Mortgages{" "}
+                    <img src="assets/img/arrow-up-right.svg" alt="case-studies" />
+                  </NavLink>
                 </h4>
-                <p>Creating a new hub for vital research & resources</p>
+                <p>Maximizing Tax Efficiency with SPV Limited Company Mortgages</p>
                 <div className="img__box">
-                  <img src="assets/img/more-project-01.png" alt="" />
+                  <NavLink to="/spv-mortgages/">
+                    <img src="./assets/img/cs-4.png" alt="" />
+                  </NavLink>
                 </div>
               </div>
             </div>

@@ -53,7 +53,7 @@ export default function Navbar() {
               letter = "&nbsp;";
             }
 
-            el.innerHTML += '<span className="letter">' + letter + "</span>";
+            el.innerHTML += '<span class="letter">' + letter + "</span>";
           });
 
           var letterElements = el.querySelectorAll(".letter");
@@ -75,8 +75,8 @@ export default function Navbar() {
       // Clean up event listeners on unmount
       $(".menu-btn").off("click");
       wobbleElements.forEach((el) => {
-        el.removeEventListener("mouseover", () => {});
-        el.removeEventListener("mouseout", () => {});
+        el.removeEventListener("mouseover", () => { });
+        el.removeEventListener("mouseout", () => { });
       });
       $(window).off("scroll");
     };
@@ -102,8 +102,8 @@ export default function Navbar() {
   }, []);
 
   const location = useLocation();
-  const path = location.pathname.replace('/', '') || 'home';
-  
+  const path = location.pathname.replace(/\//g, '') || 'home';
+
   return (
     <>
       <header className={`${headerFixed ? "fixed" : ""} header ${path}`}>
@@ -111,26 +111,29 @@ export default function Navbar() {
           <div className="navbar">
             <div className="logo">
               <NavLink to="/">
-                <img src="assets/img/logo.svg" alt="logo" />
+                <img src="assets/img/logo.png" alt="logo" />
               </NavLink>
             </div>
             <div className="nav-bar">
               <nav className="nav-menu">
                 <ul>
                   <li>
-                    <NavLink to="/work"> Work</NavLink>
+                    <NavLink to="/case-studies/">Case Studies</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/about"> About</NavLink>
+                    <NavLink to="/about/">About</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/services"> Services</NavLink>
+                    <NavLink to="/services/">Services</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/career"> Career</NavLink>
+                    <NavLink to="/career/">Career</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/contactus"> Contact</NavLink>
+                    <NavLink to="https://fifilo.com/blogs/" target="_blank">Blogs</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/contact-us/">Contact</NavLink>
                   </li>
                 </ul>
               </nav>
@@ -144,28 +147,33 @@ export default function Navbar() {
                   <div className="col-lg-5 col-md-5">
                     <ul className="menu">
                       <li>
-                        <NavLink to="/work" data-animation="spin" className="wobble">
-                          Work{" "}
-                        </NavLink>{" "}
-                      </li>
-                      <li>
-                        <NavLink to="/about" data-animation="spin" className="wobble">
-                          About{" "}
+                        <NavLink to="/case-studies/" data-animation="spin" className="wobble">
+                          Case Studies
                         </NavLink>
                       </li>
                       <li>
-                        <NavLink to="/services" data-animation="spin" className="wobble">
+                        <NavLink to="/about/" data-animation="spin" className="wobble">
+                          About
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink to="/services/" data-animation="spin" className="wobble">
                           Services
                         </NavLink>
                       </li>
                       <li>
-                        <NavLink to="/career" data-animation="spin" className="wobble">
+                        <NavLink to="/career/" data-animation="spin" className="wobble">
                           Career
                         </NavLink>
                       </li>
                       <li>
-                        <NavLink to="/contactus" data-animation="spin" className="wobble">
-                          Contact{" "}
+                        <NavLink to="https://fifilo.com/blogs/" target="_blank" data-animation="spin" className="wobble">
+                          Blogs
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink to="/contact-us/" data-animation="spin" className="wobble">
+                          Contact
                         </NavLink>
                       </li>
                     </ul>
@@ -174,11 +182,11 @@ export default function Navbar() {
                     <div className="card-enquiry">
                       <p>PROJECT ENQUIRY</p>
                       <h4>We Can help you with your ideas, Challanges & Ambitions!!</h4>
-                      <NavLink to="/contactus" className="btn btn__primary">
+                      <NavLink to="/contact-us/" className="btn btn__primary">
                         Let's Talk
                       </NavLink>
                       <h6>
-                        Want to be part of fifilo design studio?<NavLink to="/">apply now →</NavLink>{" "}
+                        Want to be Part of FIFILO Design Studio?<NavLink to="/contact-us/"> Apply Now</NavLink>
                       </h6>
                     </div>
                   </div>

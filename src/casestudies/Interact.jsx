@@ -4,6 +4,7 @@ import $ from "jquery";
 import { another, getdata } from "./New";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { NavLink } from "react-router-dom";
 
 export default function Interact() {
   useEffect(() => {
@@ -63,7 +64,7 @@ export default function Interact() {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Overview</h3>
+                <h3>Brief Insight of the Project</h3>
                 <p>
                   Interact is an innovative SaaS application designed to empower sales representatives in their prospecting efforts by offering real-time guidance, behavior analysis, and noise
                   cancellation. Interact provides sales teams with actionable insights and tailored recommendations during live interactions, helping them to engage more effectively with prospects.
@@ -79,7 +80,7 @@ export default function Interact() {
                 </div>
                 <div>
                   <p>Timeline</p>
-                  <h5>8 Months</h5>
+                  <h5>6 Months</h5>
                 </div>
                 <div>
                   <p>Screens</p>
@@ -96,7 +97,7 @@ export default function Interact() {
               <div className="row">
                 <div className="col-12">
                   <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                    <h3>Problem</h3>
+                    <h3>Core Issue We Addressed</h3>
                     <p>
                       The current UI/UX of Interact lacks intuitive real-time guidance, making it difficult for sales representatives to navigate and interpret data. Missing features like
                       transcription, AI integration, and script management in the Chrome extension hinder workflow efficiency. Additionally, the absence of a noise-cancellation feature affects call
@@ -106,7 +107,7 @@ export default function Interact() {
                 </div>
                 <div className="col-12">
                   <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                    <h3>Solution</h3>
+                    <h3>Strategy and Approach</h3>
                     <p>
                       To improve Interact's UI/UX for sales representatives, the following solutions are proposed: revamp the user interface for a cleaner, more intuitive design and implement
                       responsive design principles; enrich features with transcription, AI integration for deeper insights, and a script management tool within the Chrome extension; integrate noise
@@ -335,7 +336,7 @@ export default function Interact() {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Style Guide & Components</h3>
+                <h3>Style Guide and Key Components</h3>
                 <p>
                   As a team, we collaborated on the style guide to ensure consistency and enhance the overall quality of the product. Our primary focus was on typography, icons, and updating colors to
                   align with WCAG standards.
@@ -468,7 +469,7 @@ export default function Interact() {
 
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Visual Output</h3>
+                <h3>Updated Look and Feel</h3>
                 <p>
                   The new design by us features a modern, intuitive layout, clear financial information, simplified navigation, and full mobile optimization, resulting in improved user experience and
                   higher engagement.
@@ -484,28 +485,28 @@ export default function Interact() {
               <img src="assets/img/interact-img-01.jpg" alt="" />
             </div>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-12">
             <div className="img__fullWidth" data-aos="fade-up" data-aos-duration="800">
               <img src="assets/img/interact-img-02.jpg" alt="" />
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-md-12">
             <div className="img__fullWidth" data-aos="fade-up" data-aos-duration="800">
               <img src="assets/img/interact-img-03.jpg" alt="" />
             </div>
           </div>
-          <div className="col-12">
+          {/* <div className="col-12">
             <div className="img__fullWidth" data-aos="fade-up" data-aos-duration="800">
               <img src="assets/img/interact-img-04.jpg" alt="" />
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="content__box" data-aos="fade-up" data-aos-duration="800">
-                <h3>Conclusion</h3>
+                <h3>How Fifilo Designs Drives Value for Interact</h3>
                 <p>
                   After implementing these enhancements, Interact will significantly improve its UI/UX, providing sales representatives with a more intuitive, efficient, and personalized prospecting
                   tool. The platform will feature a cleaner design and responsive interface, ensuring usability across various devices. Enhanced functionalities like transcription, AI integration,
@@ -530,18 +531,20 @@ export default function Interact() {
             <div className="col-lg-6 col-md-6" data-aos="fade-right" data-aos-duration="800">
               <div className="card__caseStudies">
                 <div className="top__keywords">
-                  <span>Product Design</span>
-                  <span>Case Study</span>
+                  <span>Branding</span>
+                  <span>UI/UX Design</span>
                 </div>
                 <h4>
-                  CSA Centre{" "}
-                  <a href="" className="btn">
-                    <img src="assets/img/arrow-up-right.svg" alt="" />
-                  </a>
+                  <NavLink to="/curehub/">
+                    Cure Hub{" "}
+                    <img src="assets/img/arrow-up-right.svg" alt="case-studies" />
+                  </NavLink>
                 </h4>
-                <p>Creating a new hub for vital research & resources</p>
+                <p>Make hitting the GYM a habit you will love the App.</p>
                 <div className="img__box">
-                  <img src="assets/img/more-project-01.png" alt="" />
+                  <NavLink to="/curehub/">
+                    <img src="./assets/img/cs-2.png" alt="" />
+                  </NavLink>
                 </div>
               </div>
             </div>
@@ -549,18 +552,20 @@ export default function Interact() {
             <div className="col-lg-6 col-md-6" data-aos="fade-left" data-aos-duration="800">
               <div className="card__caseStudies">
                 <div className="top__keywords">
-                  <span>Product Design</span>
-                  <span>Case Study</span>
+                  <span>Development</span>
+                  <span>UI/UX Design</span>
                 </div>
                 <h4>
-                  CSA Centre{" "}
-                  <a href="" className="btn">
-                    <img src="assets/img/arrow-up-right.svg" alt="" />
-                  </a>
+                  <NavLink to="/tribe-stays/">
+                    TribeStays{" "}
+                    <img src="assets/img/arrow-up-right.svg" alt="case-studies" />
+                  </NavLink>
                 </h4>
                 <p>Creating a new hub for vital research & resources</p>
                 <div className="img__box">
-                  <img src="assets/img/more-project-01.png" alt="" />
+                  <NavLink to="/tribe-stays/">
+                    <img src="./assets/img/cs-1.png" alt="" />
+                  </NavLink>
                 </div>
               </div>
             </div>

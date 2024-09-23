@@ -3,34 +3,34 @@ export let getdata = () => {
   $(document).ready(function () {
     const scrollWrapper = $(".horizontal-scroll-wrapper");
     const containers = $(".horizontal-scroll-container");
-  
+
     // Remove isHorizontalScrollComplete if it's not being used
     // let isHorizontalScrollComplete = false; // Remove this line
-  
+
     function handleScroll() {
       const scrollPosition = $(window).scrollTop();
-  
+
       const homeWalkthrough = $(".design__process");
       const homeWalkthroughTop = homeWalkthrough.offset().top;
       const homeWalkthroughBottom = homeWalkthroughTop + homeWalkthrough.outerHeight();
-  
+
       if (scrollPosition >= homeWalkthroughTop && scrollPosition < homeWalkthroughBottom) {
         const scrollProgress = (scrollPosition - homeWalkthroughTop) / (homeWalkthroughBottom - homeWalkthroughTop);
         const percentageScrolled = Math.min(100, scrollProgress * 100);
-  
+
         const maxHorizontalScrollPercentage = 80;
         const horizontalScrollPercentage = Math.min(maxHorizontalScrollPercentage, percentageScrolled);
         scrollWrapper.css("transform", `translate3d(-${horizontalScrollPercentage}%, 0, 0)`);
-  
+
         containers.each(function (index) {
           const strokeArrow = $(this).find(".horizontal-stroke-arrow");
           const stroke = $(this).find(".horizontal-stroke");
           const contentBox = $(this).find(".content__box");
-  
+
           if (strokeArrow.length) {
             const containerStart = (index / containers.length) * maxHorizontalScrollPercentage;
             const containerEnd = ((index + 1) / containers.length) * maxHorizontalScrollPercentage;
-  
+
             if (percentageScrolled >= containerStart && percentageScrolled < containerEnd) {
               const containerScroll = ((percentageScrolled - containerStart) / (containerEnd - containerStart)) * 100;
               strokeArrow.css("width", `${containerScroll}%`);
@@ -49,37 +49,37 @@ export let getdata = () => {
         });
       } else {
         scrollWrapper.css("transform", "translate3d(0, 0, 0)");
-  
+
         containers.each(function () {
           $(this).siblings(".horizontal-stroke").removeClass("active");
           $(this).siblings(".content__box").removeClass("highlight");
         });
       }
     }
-  
+
     function checkIntersection() {
       const homeWalkthrough = $(".design__process");
       const homeWalkthroughTop = homeWalkthrough.offset().top;
       const homeWalkthroughBottom = homeWalkthroughTop + homeWalkthrough.outerHeight();
       const viewportHeight = $(window).height();
       const scrollTop = $(window).scrollTop();
-  
+
       if (scrollTop + viewportHeight > homeWalkthroughTop && scrollTop < homeWalkthroughBottom) {
         $(window).on("scroll", handleScroll);
       } else {
         $(window).off("scroll", handleScroll);
         scrollWrapper.css("transform", "translate3d(0, 0, 0)");
-  
+
         containers.each(function () {
           $(this).siblings(".horizontal-stroke").removeClass("active");
           $(this).siblings(".content__box").removeClass("highlight");
         });
       }
     }
-  
+
     checkIntersection();
     $(window).on("scroll", checkIntersection);
-  
+
     function cleanup() {
       $(window).off("scroll", handleScroll);
       $(window).off("scroll", checkIntersection);
@@ -88,11 +88,11 @@ export let getdata = () => {
       $(".content__box").removeClass("highlight");
       $(".horizontal-stroke-arrow").css("width", "0%");
     }
-  
+
     return cleanup;
   });
-  
-  
+
+
   // $(document).ready(function () {
   //   const scrollWrapper = $(".horizontal-scroll-wrapper");
   //   const containers = $(".horizontal-scroll-container");

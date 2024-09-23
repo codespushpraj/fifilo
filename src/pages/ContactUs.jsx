@@ -1,9 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import $ from "jquery"; // import jQuery
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Loader from "../layout/Loader";
 
 export default function ContactUs() {
+
+  useEffect(() => {
+    $(document).ready(function () {
+      if (window.location.pathname === '/contact-us/') {
+        $('.footer').addClass('contact-footer');
+      } else {
+        $('.footer').removeClass('contact-footer');
+      }
+    });
+  }, []);
+
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
@@ -12,7 +25,7 @@ export default function ContactUs() {
 
     const handleMessage = (event) => {
       if (event.data === 'formSubmitted') {
-        navigate('/thank-you');
+        navigate('/thank-you/');
       }
     };
 
@@ -29,10 +42,14 @@ export default function ContactUs() {
 
   return (
     <div className="contactPage bg__dark">
-      {loading && (
-        <div className="loader">Loading...</div>
-      )}
-      <iframe src="https://engineersahab.com/project/fifilo/fifilo-contact/" width="100%" frameBorder="0" onLoad={handleIframeLoad} style={{ display: loading ? 'none' : 'block' }}></iframe>
+      {loading && <Loader />}
+      <iframe
+        src="https://www.fifilo.com/contact/"
+        width="100%"
+        frameBorder="0"
+        onLoad={handleIframeLoad}
+        style={{ display: loading ? 'none' : 'block' }}
+      ></iframe>
     </div>
   );
 }

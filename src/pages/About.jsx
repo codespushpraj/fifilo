@@ -1,11 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import $ from "jquery"; // import jQuery
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { NavLink } from "react-router-dom";
+import useCursorPosition from "../layout/useCursorPosition";
+
+function Point(x, y, z) {
+  this.x = x;
+  this.y = y;
+  this.z = z;
+  this.rx = x;
+  this.ry = y;
+  this.rz = z;
+  this.nx = 0.5 + this.x * 0.5;
+  this.ny = 0.5 + this.y * 0.5;
+  this.nz = 0.5 + this.z * 0.5;
+  this.h = this.nx * 360;
+  this.s = 50 + this.ny * 25;
+  this.l = 50 + this.nz * 25;
+}
 
 export default function About() {
+  useCursorPosition('dark__bnr');
   useEffect(() => {
     $(document).ready(function () {
       // Add 'active' class to the first .stroke-circle initially
@@ -64,6 +81,217 @@ export default function About() {
   useEffect(() => {
     AOS.init();
   });
+
+  const canvasRef = useRef(null);
+  const particlesRef = useRef([]);
+  const forceRef = useRef(new Point(0, 0, 0));
+  const tRef = useRef(0);
+  const radiusRef = useRef(0);
+  const centerRef = useRef({ x: 0, y: 0 });
+  const backgroundRef = useRef(null);
+
+  const settings = {
+    debug: true,
+    nLong: 35,
+    nLat: 30,
+    forceAmp: 0.2,
+    forceRadius: 2,
+    moveSpeed: 0.04,
+  };
+
+  const PI2 = Math.PI * 2;
+
+  // Helper functions
+  const getDistance = (p0, p1) => {
+    const dx = p1.x - p0.x;
+    const dy = p1.y - p0.y;
+    const dz = p1.z - p0.z;
+    return Math.sqrt(dx * dx + dy * dy + dz * dz);
+  };
+
+  const createParticles = () => {
+    particlesRef.current = [];
+    for (let i = 1; i < settings.nLat; i++) {
+      const posY = Math.cos(settings.aLat * i);
+      const r = Math.cos(Math.PI * 0.5 + settings.aLat * i);
+      for (let j = 0; j < settings.nLong; j++) {
+        const angle = settings.aLong * j;
+        const point = new Point(r * Math.cos(angle), posY, r * Math.sin(angle));
+        particlesRef.current.push(point);
+      }
+    }
+  };
+
+  const updateForce = () => {
+    forceRef.current.x += (Math.cos(tRef.current) - forceRef.current.x) * 0.1;
+    forceRef.current.y += (Math.sin(tRef.current) - forceRef.current.y) * 0.1;
+    forceRef.current.z += (Math.cos(tRef.current) - forceRef.current.z) * 0.1;
+  };
+
+  const drawParticles = (ctx) => {
+    const particles = particlesRef.current;
+    const n = particles.length;
+    ctx.save();
+    ctx.fillStyle = "rgba(255,255,255,0.5)";
+    ctx.translate(centerRef.current.x, centerRef.current.y);
+
+    ctx.beginPath();
+    for (let i = 0, p, dist, f; i < n; i++) {
+      p = particles[i];
+      ctx.moveTo(radiusRef.current * p.x, radiusRef.current * p.y);
+      ctx.lineTo(radiusRef.current * p.rx, radiusRef.current * p.ry);
+
+      const dist = getDistance(p, forceRef.current);
+      const f = settings.forceAmp * Math.max(settings.forceRadius - dist, 0) + 1;
+      p.rx = p.x * f;
+      p.ry = p.y * f;
+      p.rz = p.z * f;
+    }
+    ctx.closePath();
+    ctx.strokeStyle = "rgba(255,255,255,0.1)";
+    ctx.stroke();
+
+    for (let i = 0, p; i < n - 1; i++) {
+      p = particles[i];
+      ctx.beginPath();
+      ctx.fillStyle = "#fdb913";
+      ctx.fillRect(radiusRef.current * p.rx - 2, radiusRef.current * p.ry - 2, 2, 2);
+      ctx.closePath();
+    }
+    ctx.restore();
+  };
+
+  const createBackground = () => {
+    backgroundRef.current = backgroundRef.current || document.createElement("canvas");
+    backgroundRef.current.width = radiusRef.current * 2;
+    backgroundRef.current.height = radiusRef.current * 2;
+
+    const ctx = backgroundRef.current.getContext("2d");
+    // Draw latitudes
+    for (let i = 0, x, y, a; i < settings.nLat + 1; i++) {
+      a = settings.aLong * i;
+      x = radiusRef.current;
+      y = Math.cos(a) * radiusRef.current + radiusRef.current;
+      if (settings.debug) {
+        const r = Math.sin(a) * radiusRef.current;
+        ctx.save();
+        ctx.beginPath();
+        ctx.strokeStyle = "rgba(255,255,255,0.04)";
+        ctx.moveTo(radiusRef.current - r, y);
+        ctx.lineTo(radiusRef.current + r, y);
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+      }
+    }
+
+    // Draw longitudes
+    for (let i = 0, x, y, a; i < settings.nLong; i++) {
+      a = settings.aLat * i;
+      x = Math.cos(a) * radiusRef.current + radiusRef.current;
+      y = radiusRef.current;
+
+      ctx.save();
+      ctx.strokeStyle = "rgba(255,255,255,0.04)";
+      ctx.translate(radiusRef.current, radiusRef.current);
+      ctx.scale(Math.sin(a), 1);
+      ctx.beginPath();
+      ctx.arc(0, 0, radiusRef.current, 0, PI2, false);
+      ctx.stroke();
+      ctx.closePath();
+      ctx.restore();
+    }
+  };
+
+  const drawBackground = (ctx) => {
+    ctx.save();
+    ctx.translate(centerRef.current.x - radiusRef.current, centerRef.current.y - radiusRef.current);
+    ctx.drawImage(backgroundRef.current, 0, 0);
+    ctx.restore();
+  };
+
+  const resize = () => {
+    const canvas = canvasRef.current;
+    const parent = canvas.parentElement;
+
+    if (canvas) {
+      // Ensure canvas size fits within parent container
+      canvas.width = parent.clientWidth;
+      canvas.height = parent.clientHeight;
+
+      centerRef.current = {
+        x: canvas.width * 0.5,
+        y: canvas.height * 0.5,
+      };
+
+      // Adjust radius based on your preferred approach
+      // Option 1: Percentage of smallest dimension
+      // radiusRef.current = Math.min(canvas.width, canvas.height) * 0.5;
+
+      // Option 2: Fixed value
+      // radiusRef.current = 300;
+
+      // Option 3: Aspect ratio
+      const aspectRatio = 1.65;
+      radiusRef.current = Math.min(canvas.width / aspectRatio, canvas.height) * 0.6;
+
+      createBackground();
+      createParticles();
+    }
+  };
+
+  const render = (ctx) => {
+    if (canvasRef.current) {
+      tRef.current += settings.moveSpeed;
+
+      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+
+      drawBackground(ctx);
+      updateForce();
+      drawParticles(ctx);
+    }
+  };
+
+  const draw = () => {
+    const ctx = canvasRef.current?.getContext('2d');
+    if (ctx) {
+      const animate = () => {
+        requestAnimationFrame(animate);
+        render(ctx);
+      };
+      animate();
+    }
+  };
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    settings.aLong = Math.PI / settings.nLong;
+    settings.aLat = Math.PI / settings.nLat;
+
+    if (canvas) {
+      // Set initial canvas size
+      canvas.width = canvas.clientWidth;
+      canvas.height = canvas.clientHeight;
+
+      // Event listeners
+      const handleResize = () => {
+        if (canvas) {
+          canvas.width = canvas.clientWidth;
+          canvas.height = canvas.clientHeight;
+          resize();
+        }
+      };
+
+      window.addEventListener('resize', handleResize);
+
+      resize();
+      draw();
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+  }, []);
   return (
     <>
       <Helmet>
@@ -78,20 +306,22 @@ export default function About() {
         />
       </Helmet>
       <div className="comn__bnr about__bnr">
-        <video src="assets/img/glowing-marbles.mp4" muted loop autoPlay></video>
+        {/* <video src="assets/img/glowing-marbles.mp4" muted loop autoPlay></video> */}
         <div className="container">
           <div className="bnr__content">
             <div className="left__bx" data-aos="fade-up" data-aos-duration="800">
-              <h2>
-                Explore Our <br />
-                <span>Design Studio's Story</span>
-              </h2>
-              <h6>Learn more about who we are, what we do, and why we’re passionate about creating exceptional digital experiences.</h6>
+              <h2>Crafting Experiences<br /><span>Not Just Designs</span></h2>
+              <h6>We bring ideas to life through engaging digital experiences. Collaborating closely with our clients, we create impactful designs that go beyond aesthetics, focusing on connections and real results.</h6>
             </div>
+
             <div data-aos="fade-up" data-aos-duration="800">
-              <NavLink to="/contactus" className="btn">
+              <NavLink to="/contact-us/" className="btn">
                 Lets Connect <span></span>
               </NavLink>
+            </div>
+
+            <div id="canvas-about" className="animation-wrapper">
+              <canvas ref={canvasRef} />
             </div>
           </div>
         </div>
@@ -108,44 +338,35 @@ export default function About() {
           <div className="row gx-lg-4 gx-md-3 inner__gapTop">
             <div className="col-12">
               <div className="top__bx" data-aos="fade-up" data-aos-duration="800">
-                <h6>
-                  Welcome to FIFILO Designs! Founded by Mohsin Khan and Abhishek Joshi, we’re a creative studio that blends design, development, and digital marketing. With a unique background in
-                  independent film, we bring a fresh perspective to every project. Whether you're looking for UI/UX design, web development, or digital marketing, we’re here to turn your vision into a
-                  standout digital experience. From startups to established brands, we craft solutions that are as innovative as they are effective.
-                </h6>
+                <h6>Founded by the visionary duo Mohsin Khan and Abhishek Joshi, FIFILO Designs is where creativity meets technology. Inspired by our roots in design innovation, we infuse every project with a unique blend of artistic flair and strategic insight. Whether you're launching a startup or enhancing an established brand, we transform your vision into memorable digital experiences. From pixel-perfect UI/UX design to advanced web development and impactful digital marketing, we create solutions that not only work but truly shine.</h6>
               </div>
             </div>
-            <div className="col-lg-4 col-md-4" data-aos="flip-left" data-aos-duration="800">
+            {/* <div className="col-lg-4 col-md-4" data-aos="flip-left" data-aos-duration="800">
               <div className="card__bx">
                 <img src="assets/img/about-01.svg" alt="about" />
                 <h5>Mission</h5>
-                <span>
-                  Our mission is to create outstanding digital experiences that exceed expectations. We blend the latest technology with creative thinking to deliver real results for our clients
-                </span>
+                <span>Our mission is to create outstanding digital experiences that exceed expectations. We blend the latest technology with creative thinking to deliver real results for our clients.</span>
               </div>
             </div>
             <div className="col-lg-4 col-md-4" data-aos="flip-left" data-aos-duration="800">
               <div className="card__bx">
                 <img src="assets/img/about-02.svg" alt="about" />
                 <h5>Vision</h5>
-                <span>We envision a future where digital solutions are revolutionary, setting new benchmarks for creativity and user-centric design.</span>
+                <span>We envision a future where digital solutions are truly revolutionary, setting new benchmarks for creativity, innovation, and user-centric design. Transforming how we interact with technology.</span>
               </div>
             </div>
             <div className="col-lg-4 col-md-4" data-aos="flip-left" data-aos-duration="800">
               <div className="card__bx">
                 <img src="assets/img/about-03.svg" alt="about" />
                 <h5>Values</h5>
-                <span>
-                  At FIFILO Designs, our core values drive everything we do: creativity, integrity, focus on the user, collaboration, and a commitment to continuous improvement. These principles guide
-                  us in crafting impactful and transformative digital experiences.
-                </span>
+                <span>At FIFILO Designs, our core values are creativity, integrity, user focus, collaboration, and continuous improvement. These principles guide us in crafting impactful and transformative digital experiences.</span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
 
-      <div className="our__process rn__section__gapTop bg__dark">
+      <div className="our__process rn__section__gapTop dark__bnr">
         <div className="container">
           <div className="main__heading" data-aos="fade-up" data-aos-duration="800">
             <p>Process</p>
@@ -421,7 +642,7 @@ export default function About() {
                 <div className="team__detail">
                   <div>
                     <p>Khalid Ali</p>
-                    <span>Ui UX Designer</span>
+                    <span>UI UX Designer</span>
                   </div>
                   <NavLink to="https://www.linkedin.com/in/sayyedkhalidali/" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -443,7 +664,7 @@ export default function About() {
                 <div className="team__detail">
                   <div>
                     <p>Sakshi Satani</p>
-                    <span>Ui UX Designer</span>
+                    <span>UI UX Designer</span>
                   </div>
                   <NavLink to="https://www.linkedin.com/in/sakshi-satani-360b061b1/" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -487,7 +708,7 @@ export default function About() {
                 <div className="team__detail">
                   <div>
                     <p>Monika Nagwani</p>
-                    <span>Ui UX Designer</span>
+                    <span>UI UX Designer</span>
                   </div>
                   <NavLink to="https://www.linkedin.com/in/monika-nagwani-0a0064227/" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -509,7 +730,7 @@ export default function About() {
                 <div className="team__detail">
                   <div>
                     <p>Aman Chourasiya</p>
-                    <span>Ui UX Designer</span>
+                    <span>UI UX Designer</span>
                   </div>
                   <NavLink to="https://www.linkedin.com/in/amanux26/" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -531,7 +752,7 @@ export default function About() {
                 <div className="team__detail">
                   <div>
                     <p>Abdul Razique</p>
-                    <span>Ui UX Designer</span>
+                    <span>UI UX Designer</span>
                   </div>
                   <NavLink to="https://www.linkedin.com/in/abdul-razique-800a1023b/" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -570,14 +791,14 @@ export default function About() {
             <div className="col-lg-3 col-md-6 col-6">
               <div className="team__card" data-aos="fade-up" data-aos-duration="800">
                 <div className="img__team">
-                  <img src="assets/img/shreyansh-tiwari.png" alt="our-team" />
+                  <img src="assets/img/osaif-ansari.png" alt="our-team" />
                 </div>
                 <div className="team__detail">
                   <div>
-                    <p>Shreyansh Tiwari</p>
-                    <span>UI UX Designer</span>
+                    <p>Osaif Ansari</p>
+                    <span>Digital Marketing Executive</span>
                   </div>
-                  <NavLink to="https://www.linkedin.com/in/shreyansign/" target="_blank">
+                  <NavLink to="https://www.linkedin.com/in/osaif-ansari-b991412b8/" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                       <rect width="32" height="32" rx="16" fill="#0A66C2" />
                       <path
@@ -586,132 +807,6 @@ export default function About() {
                       />
                     </svg>
                   </NavLink>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-6">
-              <div className="team__card" data-aos="fade-up" data-aos-duration="800">
-                <div className="img__team">
-                  <img src="assets/img/mujahid-khan.png" alt="our-team" />
-                </div>
-                <div className="team__detail">
-                  <div>
-                    <p>Mujahid Khan</p>
-                    <span>Executive - Business Development</span>
-                  </div>
-                  <NavLink to="https://www.linkedin.com/in/mujahid-khan-156386179/" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                      <rect width="32" height="32" rx="16" fill="#0A66C2" />
-                      <path
-                        d="M23.501 7.2002H8.49942C8.15484 7.2002 7.82438 7.33708 7.58073 7.58073C7.33708 7.82438 7.2002 8.15484 7.2002 8.49942V23.501C7.2002 23.8455 7.33708 24.176 7.58073 24.4197C7.82438 24.6633 8.15484 24.8002 8.49942 24.8002H23.501C23.8455 24.8002 24.176 24.6633 24.4197 24.4197C24.6633 24.176 24.8002 23.8455 24.8002 23.501V8.49942C24.8002 8.15484 24.6633 7.82438 24.4197 7.58073C24.176 7.33708 23.8455 7.2002 23.501 7.2002ZM12.446 22.1932H9.79986V13.788H12.446V22.1932ZM11.1211 12.6232C10.8209 12.6215 10.528 12.5309 10.2793 12.3629C10.0305 12.1949 9.83714 11.957 9.72351 11.6792C9.60987 11.4014 9.58107 11.0961 9.64075 10.8019C9.70043 10.5078 9.84592 10.2379 10.0588 10.0263C10.2718 9.81474 10.5426 9.67099 10.8371 9.6132C11.1317 9.55541 11.4367 9.58616 11.7138 9.70158C11.9909 9.81701 12.2276 10.0119 12.394 10.2617C12.5604 10.5115 12.6491 10.805 12.6489 11.1052C12.6517 11.3062 12.614 11.5056 12.5381 11.6917C12.4622 11.8778 12.3496 12.0467 12.2071 12.1884C12.0645 12.33 11.8949 12.4415 11.7083 12.5162C11.5217 12.5909 11.322 12.6273 11.1211 12.6232ZM22.1993 22.2005H19.5544V17.6086C19.5544 16.2544 18.9788 15.8364 18.2356 15.8364C17.451 15.8364 16.681 16.428 16.681 17.6429V22.2005H14.0349V13.7941H16.5795V14.9589H16.6138C16.8692 14.4419 17.7639 13.5582 19.1291 13.5582C20.6055 13.5582 22.2005 14.4345 22.2005 17.0012L22.1993 22.2005Z"
-                        fill="#FBFDFF"
-                      />
-                    </svg>
-                  </NavLink>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="faq__section rn__section__gapTop">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-4 col-md-4">
-              <div className="main__heading" data-aos="fade-up" data-aos-duration="800">
-                <p>FAQ’s</p>
-                <h2>Frequently Asked Questions</h2>
-              </div>
-            </div>
-            <div className="col-lg-8 col-md-8">
-              <div className="accordion" id="accordionExample">
-                <div className="accordion-item" data-aos="fade-up" data-aos-duration="800">
-                  <h2 className="accordion-header" id="heading01">
-                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse01" aria-expanded="true" aria-controls="collapse01">
-                      What is your process for ensuring high-quality work?
-                    </button>
-                  </h2>
-                  <div id="collapse01" className="accordion-collapse collapse show" aria-labelledby="heading01" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <h6>
-                        We follow a structured process that includes discovery, strategy, design and development, implementation, and ongoing optimization. This approach ensures we deliver
-                        high-quality work that meets your goals.
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item" data-aos="fade-up" data-aos-duration="900">
-                  <h2 className="accordion-header" id="heading02">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse02" aria-expanded="false" aria-controls="collapse02">
-                      How can I get in touch with FIFILO Designs?
-                    </button>
-                  </h2>
-                  <div id="collapse02" className="accordion-collapse collapse" aria-labelledby="heading03" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <h6>You can contact us through our website’s contact form, by phone, or via email. We’re here to answer any questions and discuss how we can help with your next project.</h6>
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item" data-aos="fade-up" data-aos-duration="1000">
-                  <h2 className="accordion-header" id="heading03">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse03" aria-expanded="false" aria-controls="collapse03">
-                      How does FIFILO Designs ensure client satisfaction?
-                    </button>
-                  </h2>
-                  <div id="collapse03" className="accordion-collapse collapse" aria-labelledby="heading03" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <h6>
-                        We focus on open communication and collaboration with our clients throughout the project. By understanding their vision and keeping them involved in every stage, we ensure that
-                        the final outcome aligns with their expectations and delivers outstanding results.
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item" data-aos="fade-up" data-aos-duration="1100">
-                  <h2 className="accordion-header" id="heading04">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse04" aria-expanded="false" aria-controls="collapse04">
-                      Can you provide testimonials or success stories from previous clients?
-                    </button>
-                  </h2>
-                  <div id="collapse04" className="accordion-collapse collapse" aria-labelledby="heading04" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <h6>
-                        Yes, we’re happy to share testimonials and success stories from our past clients. These endorsements highlight the positive impact of our work and the satisfaction of those
-                        we’ve collaborated with. Feel free to check our website or contact us for specific examples.
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item" data-aos="fade-up" data-aos-duration="1200">
-                  <h2 className="accordion-header" id="heading05">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse05" aria-expanded="false" aria-controls="collapse05">
-                      How can I stay updated with your latest projects and news?
-                    </button>
-                  </h2>
-                  <div id="collapse05" className="accordion-collapse collapse" aria-labelledby="heading06" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <h6>
-                        To stay updated, you can follow us on our social media channels, subscribe to our newsletter, or regularly visit our blog. We share updates about our latest projects, industry
-                        insights, and company news through these platforms.
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item" data-aos="fade-up" data-aos-duration="1400">
-                  <h2 className="accordion-header" id="heading06">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse06" aria-expanded="false" aria-controls="collapse06">
-                      What kinds of technologies and tools do you use in your projects?
-                    </button>
-                  </h2>
-                  <div id="collapse06" className="accordion-collapse collapse" aria-labelledby="heading06" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <h6>
-                        We use a range of cutting-edge technologies and tools tailored to the needs of each project. This includes design software like Adobe XD and Figma, development frameworks such
-                        as React and Angular, and marketing tools for analytics and automation.
-                      </h6>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
